@@ -1,0 +1,109 @@
+body {
+  color: #40514E;
+  margin: 0;
+  text-align: center;
+  font-family: 'Merriweather', serif;
+}
+
+h1 {
+  color: #66BFBF;
+  font-family: 'Sacramento', cursive;
+  font-size: 5.625rem;
+  margin: 50px auto 0 auto;
+}
+
+h2 {
+  color: #66BFBF;
+  font-family: 'Montserrat', 'sans-serif';
+  font-size: 2.5rem;
+  font-weight: normal;
+  padding-bottom: 10px;
+}
+
+h3 {
+  color: #11999E;
+  font-family: 'Montserrat', 'sans-serif';
+}
+
+a {
+  color: #11999E;
+  font-family: 'Montserrat', 'sans-serif';
+  margin: 10px 20px;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #EAF6F6;
+}
+
+p {
+  line-height: 2;
+}
+
+hr {
+  border: dotted #EAF6F6;
+  border-bottom: none;
+  margin: 100px auto;
+  width: 4%;
+}
+
+.top-container {
+  background-color: #E4F9F5;
+  padding-top: 100px;
+  position: relative;
+}
+
+.middle-container {
+  margin: 100px 0;
+}
+
+.bottom-container {
+  background-color: #66BFBF;
+  padding: 50px 0 20px;
+}
+
+.top-cloud {
+  position: absolute;
+  right: 300px;
+  top: 40px;
+}
+
+.bottom-cloud {
+  bottom: 300px;
+  left: 250px;
+  position: absolute;
+}
+
+.skill-row {
+  margin: 100px auto 100px auto;
+  text-align: left;
+  width: 50%;
+}
+
+.code-img {
+  float: left;
+  margin-right: 30px;
+  width: 25%;
+}
+
+.chili-img {
+  float: right;
+  margin-left: 30px;
+  width: 25%;
+}
+
+.intro {
+  margin: auto;
+  width: 30%;
+}
+
+.contact-message {
+  margin: 40px auto 60px;
+  width: 40%;
+}
+
+.copyright {
+  color: #EAF6F6;
+  font-size: 0.75rem;
+  padding: 20px 0;
+}
