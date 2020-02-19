@@ -9,8 +9,20 @@ h1 {
   line-height: 1.5;
 }
 
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
 .container-fluid {
-  padding: 3% 15%;
+  padding: 3% 15% 7%;
 }
 
 #title {
@@ -43,20 +55,20 @@ h1 {
 .title-image {
   transform: rotate(25deg);
   width: 60%;
+  position: absolute;
+  right: 30%;
 }
 
 #features {
+  background-color: white;
   padding: 7% 15%;
+  position: relative;
+  z-index: 1;
 }
 
 .feature-box {
   padding: 5%;
   text-align: center;
-}
-
-#features h3 {
-  font-size: 1.5rem;
-  font-weight: 900;
 }
 
 #features p {
@@ -70,4 +82,40 @@ h1 {
 
 .icon:hover {
   color: #ff4c68;
+}
+
+#testimonials {
+  background-color: #ef8172;
+  color: white;
+  text-align: center;
+}
+
+.testimonial-image {
+  width: 10%;
+  border-radius: 100%;
+  margin: 20px;
+}
+
+#press {
+  background-color: #ef8172;
+  text-align: center;
+  padding-bottom: 3%;
+}
+
+.press-logo {
+  width: 15%;
+  margin: 20px 20px 50px;
+}
+
+.carousel-item {
+  padding: 7% 15%;
+}
+
+#pricing {
+  padding: 100px;
+  text-align: center;
+}
+
+.pricing-column {
+  padding: 3% 2%;
 }
