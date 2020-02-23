@@ -31,3 +31,38 @@
 - elements that come first in HTML document are closer to back
 - children sit on top of parents
 - `z-index` only works if elements are positioned (but not static)
+
+## JavaScript DOM Manipulation
+
+### Selecting HTML Elements
+- `document.querySelector('selector');`  
+- `document.querySelectorAll('selector');`
+
+### Changing Text
+- `document.querySelector('selector').innerHTML = 'text';`
+  - can put HTML tags, e.g., `document.querySelector('selector').innerHTML = '<em>text</em>';`
+- `document.querySelector('selector').textContent = 'text';`
+
+### Changing Attributes
+- `document.querySelector('selector').attributes;` (returns all the attributes)
+- `document.querySelector('selector').getAttribute('attribute');`
+- `document.querySelector('selector').setAttribute('attribute', 'changeTo');`
+
+### Adding/Removing Classes
+- `document.querySelector('selector').classList.add('class');`
+- `document.querySelector('selector').classList.remove('class');`
+
+### Event Listeners
+- `document.querySelector('selector').addEventListener('eventType', function);`
+
+To add event listeners to multiple items, use a for loop:
+
+```
+let buttonList = document.querySelectorAll('selector');
+for (let i = 0; i < buttonList.length; i++) {  
+  buttonList[i].addEventListener('eventType', function);
+}
+```
+
+### Perform Action After Specified Time
+- `setTimeout(function, milliseconds);`
