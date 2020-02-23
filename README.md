@@ -115,3 +115,34 @@ $(document).keydown(function(event) {
 - `$('selector').animate({opacity: 0.5});`
 - `$('selector').animate({margin: "20%"});`
   - only works with properties that take numeric values
+
+## Node/Express
+
+### Creating Server
+
+```
+const app = express();
+
+app.get('/', function(req, res) {
+  res.send('Hello');
+});
+
+app.listen(3000);
+```
+
+`app.listen()`
+- listens on a port for HTTP requests that get sent to our server
+
+`app.get('locationOfGetRequest', function)`
+- allows us to specify what should happen when a browser connects to server and makes a GET request
+- callback function tells server what to do when GET request is made
+- `req` contains information about request that was made
+
+### Routes
+
+```
+app.get('/about', function(req, res) {
+  res.send('I am me');
+});
+```
+- if browser goes to `localhost:3000/about`, then the string is displayed
