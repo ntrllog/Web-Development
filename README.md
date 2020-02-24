@@ -1,5 +1,19 @@
 # Web-Development
 
+## HTML
+
+### Forms
+
+```
+<form action="/" method="post">
+  <input type="text" name="num1" placeholder="First Number">
+  <input type="text" name="num2" placeholder="Second Number">
+  <button type="submit" name="submit">Calculate</button>
+</form>
+```
+
+- `method="post"` sends the form data (makes a POST request) to the location specified at `action="/"`
+
 ## CSS
 
 ### Display
@@ -146,3 +160,27 @@ app.get('/about', function(req, res) {
 });
 ```
 - if browser goes to `localhost:3000/about`, then the string is displayed
+
+### Respond to Requests With HTML Files
+
+```
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+```
+- `__dirname` is the current directory
+
+### Processing Post Requests
+
+`const bodyParser = require('body-parser');`
+- use `body-parser` to extract information from POST requests
+
+```
+app.post('/', function(req, res) {
+  var num1 = Number(req.body.num1);
+  var num2 = Number(req.body.num2);
+  var result = num1 + num2;
+  res.send('The result of the calculation is ' + result);
+});
+```
+- `num1` comes from `<input type="text" name="num1" placeholder="First Number">`
