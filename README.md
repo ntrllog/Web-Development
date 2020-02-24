@@ -141,7 +141,9 @@ app.get('/', function(req, res) {
   res.send('Hello');
 });
 
-app.listen(3000);
+app.listen(3000, function() {
+  console.log('Server is running on port 3000');
+});
 ```
 
 `app.listen()`
@@ -161,7 +163,7 @@ app.get('/about', function(req, res) {
 ```
 - if browser goes to `localhost:3000/about`, then the string is displayed
 
-### Respond to Requests With HTML Files
+### Respond to GET Requests With HTML Files
 
 ```
 app.get('/', function(req, res) {
@@ -170,9 +172,10 @@ app.get('/', function(req, res) {
 ```
 - `__dirname` is the current directory
 
-### Processing Post Requests
+### Processing POST Requests
 
-`const bodyParser = require('body-parser');`
+`const bodyParser = require('body-parser');`  
+`app.use(bodyParser.urlencoded({extended: true}));`
 - use `body-parser` to extract information from POST requests
 
 ```
@@ -184,3 +187,24 @@ app.post('/', function(req, res) {
 });
 ```
 - `num1` comes from `<input type="text" name="num1" placeholder="First Number">`
+
+### Making GET Requests
+`const https = require('https');`
+- `https` is a built-in module
+
+```
+app.get('/', function(req, res) {
+  https.get('url', function(response) {
+    response.on('data', function(data) {
+      const weatherData = JSON.parse(data);
+      const temp = weatherData.main.temp;
+      const weatherDescription = weatherData.weather[0].description;
+      res.write('<h1>The temperature in London is ' + temp + ' degrees Fahrenheit</h1>');
+      res.write('<p>The weather is currently ' + weatherDescription + '</p>');
+      res.send();
+    });
+  });
+});
+```
+- can only have 1 `res.send()` in an `app.get()`
+  - use `res.write()` to send multiple lines
