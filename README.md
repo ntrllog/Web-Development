@@ -172,6 +172,11 @@ app.get('/', function(req, res) {
 ```
 - `__dirname` is the current directory
 
+For HTML files with CSS:
+- `app.use(express.static("public"));`
+- create directory called `public`
+- put CSS file in `public`
+
 ### Processing POST Requests
 
 `const bodyParser = require('body-parser');`  
@@ -188,7 +193,7 @@ app.post('/', function(req, res) {
 ```
 - `num1` comes from `<input type="text" name="num1" placeholder="First Number">`
 
-### Making GET Requests
+### Making GET Requests to External Server
 `const https = require('https');`
 - `https` is a built-in module
 
@@ -208,3 +213,28 @@ app.get('/', function(req, res) {
 ```
 - can only have 1 `res.send()` in an `app.get()`
   - use `res.write()` to send multiple lines
+  
+### Making POST Requests to External Server
+  
+```
+const options = {
+  method: 'POST'
+};
+const request = https.request(url, options, function(response) {});
+request.write(jsonData);
+request.end();
+```
+  
+### Using a Button to Redirect to Different Route
+```
+<form action="/failure" method="post">
+  <button class="btn btn-lg btn-warning" type="submit">Try Again</button>
+</form>
+```
+- put a button inside a form
+
+```
+app.post('/failure', function(req, res) {
+  res.redirect('/');
+});
+```
