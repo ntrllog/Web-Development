@@ -46,6 +46,20 @@
 - children sit on top of parents
 - `z-index` only works if elements are positioned (but not static)
 
+## JavaScript
+
+`var`
+- in a function is local
+- in `if/while/for` statements is global
+
+`let`
+- in a function is local
+- in `if/while/for` statements is local
+
+`const`
+- in a function is local
+- in `if/while/for` statements is local
+
 ## JavaScript DOM Manipulation
 
 ### Selecting HTML Elements
@@ -237,4 +251,51 @@ request.end();
 app.post('/failure', function(req, res) {
   res.redirect('/');
 });
+```
+
+### HTML Templates with EJS
+
+Use for web pages each with similar content
+
+- create `views` directory and template file with `.ejs` extension inside `views`
+
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>To Do List</title>
+  </head>
+  <body>
+    <h1>It's a <%= kindOfDay %></h1>
+  </body>
+</html>
+```
+
+`app.set('view engine', 'ejs');`
+
+`res.render('nameOfTemplateFile', {kindOfDay: valueToReplace});`
+
+### HTML Layouts with EJS
+
+Use for web pages each with different content but with same styling
+
+```
+<%- include('header') -%>
+<div class="box" id="heading">
+  <h1> <%= listTitle %> </h1>
+</div>
+```
+
+`header.ejs` contains HTML code that is repeated for all web pages:
+
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
 ```
