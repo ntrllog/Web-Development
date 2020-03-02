@@ -322,6 +322,7 @@ CREATE TABLE products (
   PRIMARY KEY (id)
 );
 ```
+
 - `PRIMARY KEY` allows a column to uniquely identify each record in a table
 
 | id  | name | price |
@@ -347,3 +348,99 @@ VALUES (2, 'Pencil')
 | --- | ------ | ----- |
 | 1   | Pen    | 1.2   |
 | 2   | Pencil |       |
+
+### Read From Table
+`SELECT name, price FROM products;`
+| name   | price |
+| ------ | ----- |
+| Pen    | 1.2   |
+| Pencil |       |
+
+```
+SELECT * FROM products
+WHERE id = 1;
+```
+
+| id  | name   | price |
+| --- | ------ | ----- |
+| 1   | Pen    | 1.2   |
+
+### Update Table
+
+```
+UPDATE products
+SET price = 0.80
+WHERE id = 2;
+```
+
+| id  | name   | price |
+| --- | ------ | ----- |
+| 1   | Pen    | 1.2   |
+| 2   | Pencil | 0.8   |
+
+```
+ALTER TABLE products
+ADD stock INT
+```
+
+| id  | name   | price | stock |
+| --- | ------ | ----- | ----- |
+| 1   | Pen    | 1.2   |       |
+| 2   | Pencil | 0.8   |       |
+
+### Delete From Table
+
+```
+DELETE FROM products
+WHERE id = 2;
+```
+
+| id  | name   | price | stock |
+| --- | ------ | ----- | ----- |
+| 1   | Pen    | 1.2   |       |
+
+### Foreign Keys
+
+```
+CREATE TABLE orders (
+  id INT NOT NULL,
+  order_number INT,
+  customer_id INT,
+  product_id INT,
+  PRIMARY KEY (id),
+  FOREIGN KEY (customer_id) REFERENCES customers(id),
+  FOREIGN KEY (product_id) REFERENCES products(id)
+);
+```
+
+- `FOREIGN KEY` links tables together
+  - they refer to the `PRIMARY KEY` of the table being linked
+
+## MongoDB
+
+- A `collection` is like a table
+- A `document` is like a row
+
+### Create Database
+`use shopDB`
+
+### Insert Document
+`db.products.insertOne({_id: 1, name: 'Pen', price: 1.20})`
+
+### Read From Collection
+
+#### with query
+`db.products.find({name: 'Pencil'})`
+
+#### with query operators
+`db.products.find({price: {$gt: 1}})`
+
+#### with projections
+`db.products.find({_id: 1}, {name: 1})`
+- `_id` is `1` (true) by default
+
+### Update Document
+`db.products.updateOne({_id: 1}, {$set: {stock: 32}})`
+
+### Delete Document
+`db.products.deleteOne({_id: 2})`
