@@ -309,3 +309,41 @@ app.get('/posts/:postName', function(req, res) {
 ```
 - anything after the colon is a variable
 - `localhost:3000/posts/post-1`
+
+## SQL
+
+### Create Table
+
+```
+CREATE TABLE products (
+  id INT NOT NULL,
+  name STRING,
+  price MONEY,
+  PRIMARY KEY (id)
+);
+```
+- `PRIMARY KEY` allows a column to uniquely identify each record in a table
+
+| id  | name | price |
+| --- | ---- | ----- |
+
+### Insert Into Table
+
+```
+INSERT INTO products
+VALUES (1, 'Pen', 1.20);
+```
+
+| id  | name | price |
+| --- | ---- | ----- |
+| 1   | Pen  | 1.2   |
+
+```
+INSERT INTO products (id, name)
+VALUES (2, 'Pencil')
+```
+
+| id  | name   | price |
+| --- | ------ | ----- |
+| 1   | Pen    | 1.2   |
+| 2   | Pencil |       |
