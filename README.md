@@ -299,3 +299,13 @@ Use for web pages each with different content but with same styling
   </head>
   <body>
 ```
+
+### Route Parameters
+
+```
+app.get('/posts/:postName', function(req, res) {
+  console.log(req.params.postName);
+});
+```
+- anything after the colon is a variable
+- `localhost:3000/posts/post-1`
