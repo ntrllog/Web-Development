@@ -444,3 +444,99 @@ CREATE TABLE orders (
 
 ### Delete Document
 `db.products.deleteOne({_id: 2})`
+
+## Mongoose
+`const mongoose = require('mongoose');`
+
+- a `model` is "like" a collection
+
+### Connect to Server
+`mongoose.connect('mongodb://localhost:27017/fruitsDB', {useNewUrlParser: true, useUnifiedTopology: true});`
+
+### Create Document
+
+```
+const fruitSchema  = new mongoose.Schema ({
+  name: String,
+  rating: Number,
+  review: String
+});
+
+const Fruit = mongoose.model('Fruit', fruitSchema); // creates fruits collection
+
+const fruit = new Fruit({
+  name: 'Apple',
+  rating: 7,
+  review: 'Pretty solid as a fruit'
+});
+
+fruit.save();
+```
+
+### Inserting Multiple Documents
+
+```
+Fruit.insertMany([kiwi, orange, banana], function(err) {
+  if (err) {
+    console.log(err);
+  }
+  else {
+    console.log('Successfully saved all the fruits to fruitsDB');
+  }
+});
+```
+
+### Read From Model
+
+```
+Fruit.find(function(err, fruits) {
+  if (err) {
+    console.log(err);
+  }
+  else {
+    console.log(fruits);
+  }
+});
+```
+
+### Update Document
+
+```
+Fruit.updateOne({_id: '5e5f57653eae65138c257fce'}, {name: 'Peach'}, function(err) {
+  if (err) {
+    console.log(err);
+  }
+  else {
+    console.log('Successfully updated the document');
+  }
+});
+```
+
+### Delete Document
+
+```
+Fruit.deleteOne({name: 'Peach'}, function(err) {
+  if (err) {
+    console.log(err);
+  }
+  else {
+    console.log('Successfully deleted the document');
+  }
+});
+```
+
+### Establishing Relationships
+
+```
+const personSchema = new mongoose.Schema ({
+  name: String,
+  age: Number,
+  favoriteFruit: fruitSchema
+});
+
+const person = new Person({
+  name: 'Amy',
+  age: 12,
+  favoriteFruit: fruit
+});
+```
