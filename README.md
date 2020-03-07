@@ -541,6 +541,22 @@ const person = new Person({
 });
 ```
 
+## Security
+
+### Database Encryption
+
+`const encrypt = require('mongoose-encryption');`
+
+`userSchema.plugin(encrypt, { secret: process.env.SECRET, encryptedFields: ['password'] });`
+
+### Environment Variables
+
+`require('dotenv').config()`
+
+### Hashing
+
+`const md5 = require('md5');`
+
 ## Server Starting Code
 
 ```
