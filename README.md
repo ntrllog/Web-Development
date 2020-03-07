@@ -557,6 +557,11 @@ const person = new Person({
 
 `const md5 = require('md5');`
 
+### Salting
+- salting is appending a random string to a password so that the whole string is used for hashing
+
+`const bcrypt = require('bcrypt');`
+
 ## Server Starting Code
 
 ```
