@@ -562,6 +562,95 @@ const person = new Person({
 
 `const bcrypt = require('bcrypt');`
 
+### Cookies and Sessions
+
+`const session = require('express-session');`  
+`const passport = require('passport');`  
+`const passportLocalMongoose = require('passport-local-mongoose');`  
+(also need `passport-local` package)
+
+- `passport-local-mongoose` automatically handles salting and hashing
+
+#### Setup
+
+```
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static('public'));
+
+app.use(session({
+  secret: 'Our little secret.',
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+mongoose.connect('mongodb://localhost:27017/userDB', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.set('useCreateIndex', true);
+
+const userSchema = new mongoose.Schema({
+  email: String,
+  password: String
+});
+
+userSchema.plugin(passportLocalMongoose);
+
+const User = mongoose.model('User', userSchema);
+
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+```
+
+#### Register a New User (using `passport-local-mongoose`)
+
+```
+User.register({username: req.body.username}, req.body.password, function(err, user) {
+  if (err) {
+    console.log(err);
+    res.redirect('/');
+  }
+  else {
+    passport.authenticate('local')(req, res, function() {
+      res.redirect('/secrets');
+    });
+  }
+});
+```
+
+#### Checking if User is Authenticated (using `passport`)
+- if a user is logged in, then they should be able to have access without needing to log in again
+
+```
+if (req.isAuthenticated()) {
+  res.render('secrets');
+}
+else {
+  res.redirect('/login');
+}
+```
+
+#### Handle User Login (using `passport`)
+
+```
+req.login(user, function(err) {
+  if (err) {
+    console.log(err);
+  }
+  else {
+    passport.authenticate('local')(req, res, function() {
+      res.redirect('/secrets');
+    });
+  }
+});
+```
+
+#### Handle User Logout (using `passport`)
+
+`req.logout()`
+
 ## Server Starting Code
 
 ```
