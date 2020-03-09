@@ -132,7 +132,7 @@ $(document).keydown(function(event) {
 - `$('selector').before('<></>');`
   - adds element before opening tag of `'selector'`
 - `$('selector').after('<></>');`
-  - adds element after opening tag of `'selector'`
+  - adds element after closing tag of `'selector'`
 - `$('selector').prepend('<></>');`
   - adds element right after opening tag of `'selector'`
 - `$('selector').append('<></>');`
