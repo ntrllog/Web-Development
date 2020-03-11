@@ -12,7 +12,7 @@
 </form>
 ```
 
-- `method="post"` sends the form data (makes a POST request) to the location specified at `action="/"`
+`method="post"` sends the form data (makes a POST request) to the location specified at `action="/"`
 
 ## CSS
 
@@ -34,20 +34,25 @@
 - **fixed**: element stays when page is scrolled
 
 ### Centering Elements
-- `text-align` does not work with elements that have a specified width
-- `margin: 0 auto` or `margin: auto` centers elements with a specified width
+`text-align` does not work with elements that have a specified width
+
+`margin: 0 auto` or `margin: auto` centers elements with a specified width
 
 ### Font Size
-- `%` and `em` are inherited (they stack on top of parent properties)
-- `rem` (root em) ignores parent properties
+`%` and `em` are inherited (they stack on top of parent properties)
+
+`rem` (root em) ignores parent properties
 
 ### Stacking Order
-- elements that come first in HTML document are closer to back
-- children sit on top of parents
-- `z-index` only works if elements are positioned (but not static)
+elements that come first in HTML document are closer to back
+
+children sit on top of parents
+
+`z-index` only works if elements are positioned (but not static)
 
 ## JavaScript
 
+### Variables
 `var`
 - in a function is local
 - in `if/while/for` statements is global
@@ -60,30 +65,75 @@
 - in a function is local
 - in `if/while/for` statements is local
 
+### Import/Export
+math.js:
+
+```
+const pi = 3.14159;
+
+function doublePi() {
+  return pi*2;
+}
+
+function triplePi() {
+  return pi*3;
+}
+
+export default pi;
+export { doublePi, triplePi };
+```
+
+index.js:
+
+```
+import PI from './math';
+```
+
+- the import name can be anything
+  - it refers to the default export
+  
+```
+import PI, { doublePi, triplePi } from './math'
+```
+
+- the other imports have to be named exactly as they're exported
+
+```
+import * as pi from './math;
+```
+
+- `pi` is an object with the exports as properties
+- `*` is discouraged
+
 ## JavaScript DOM Manipulation
 
 ### Selecting HTML Elements
-- `document.querySelector('selector');`  
-- `document.querySelectorAll('selector');`
+`document.querySelector('selector');`
+
+`document.querySelectorAll('selector');`
 
 ### Changing Text
-- `document.querySelector('selector').innerHTML = 'text';`
-  - can put HTML tags, e.g., `document.querySelector('selector').innerHTML = '<em>text</em>';`
-- `document.querySelector('selector').textContent = 'text';`
+`document.querySelector('selector').innerHTML = 'text';`
+- can put HTML tags, e.g., `document.querySelector('selector').innerHTML = '<em>text</em>';`
+  
+`document.querySelector('selector').textContent = 'text';`
 
 ### Changing Attributes
-- `document.querySelector('selector').attributes;` (returns all the attributes)
-- `document.querySelector('selector').getAttribute('attribute');`
-- `document.querySelector('selector').setAttribute('attribute', 'changeTo');`
+`document.querySelector('selector').attributes;`
+
+`document.querySelector('selector').getAttribute('attribute');`
+
+`document.querySelector('selector').setAttribute('attribute', 'changeTo');`
 
 ### Adding/Removing Classes
-- `document.querySelector('selector').classList.add('class');`
-- `document.querySelector('selector').classList.remove('class');`
+`document.querySelector('selector').classList.add('class');`
+
+`document.querySelector('selector').classList.remove('class');`
 
 ### Event Listeners
-- `document.querySelector('selector').addEventListener('eventType', function);`
+`document.querySelector('selector').addEventListener('eventType', function);`
 
-To add event listeners to multiple items, use a for loop:
+to add event listeners to multiple items, use a for loop:
 
 ```
 let buttonList = document.querySelectorAll('selector');
@@ -93,34 +143,34 @@ for (let i = 0; i < buttonList.length; i++) {
 ```
 
 ### Perform Action After Specified Time
-- `setTimeout(function, milliseconds);`
+`setTimeout(function, milliseconds);`
 
 ## jQuery
 
 ### Selecting HTML Elements
-- `$('selector');`
-  - selects *all* elements
+`$('selector');`
+- selects *all* elements
 
 ### Changing Text
-- `$('selector').html('text');`
-  - can put HTML tags, e.g., `$('selector').html = '<em>text</em>';`
-- `$('selector').text('text');`
+`$('selector').html('text');`
+- can put HTML tags, e.g., `$('selector').html = '<em>text</em>';`
+`$('selector').text('text');`
 
 ### Changing Attributes
-- `$('selector').attr('attribute');`
-- `$('selector').attr('attribute', 'changeTo');`
+`$('selector').attr('attribute');`
+`$('selector').attr('attribute', 'changeTo');`
 
 ### Adding/Removing Classes
-- `$('selector').hasClass('class');`
-- `$('selector').addClass('class');`
-- `$('selector').removeClass('class');`
+`$('selector').hasClass('class');`
+`$('selector').addClass('class');`
+`$('selector').removeClass('class');`
 
 ### Event Listeners
-- `$('selector').on('eventType', function);`
-- `$('selector').click(function);`
-- `$('selector').keydown(function);`
+`$('selector').on('eventType', function);`
+`$('selector').click(function);`
+`$('selector').keydown(function);`
 
-To add event listener to whole document (usually for keypresses):
+to add event listener to whole document (usually for keypresses):
 
 ```
 $(document).keydown(function(event) {
@@ -129,20 +179,24 @@ $(document).keydown(function(event) {
 ```
 
 ### Adding/Removing HTML Elements
-- `$('selector').before('<></>');`
-  - adds element before opening tag of `'selector'`
-- `$('selector').after('<></>');`
-  - adds element after closing tag of `'selector'`
-- `$('selector').prepend('<></>');`
-  - adds element right after opening tag of `'selector'`
-- `$('selector').append('<></>');`
-  - adds element right before closing tag of `'selector'`
-- `$('selector').remove();`
+`$('selector').before('<></>');`
+- adds element before opening tag of `'selector'`
+
+`$('selector').after('<></>');`
+- adds element after closing tag of `'selector'`
+
+`$('selector').prepend('<></>');`
+- adds element right after opening tag of `'selector'`
+
+`$('selector').append('<></>');`
+- adds element right before closing tag of `'selector'`
+
+`$('selector').remove();`
 
 ### Animations
-- `$('selector').animate({opacity: 0.5});`
-- `$('selector').animate({margin: "20%"});`
-  - only works with properties that take numeric values
+`$('selector').animate({opacity: 0.5});`
+`$('selector').animate({margin: "20%"});`
+- only works with properties that take numeric values
 
 ## Node/Express
 
@@ -175,6 +229,7 @@ app.get('/about', function(req, res) {
   res.send('I am me');
 });
 ```
+
 - if browser goes to `localhost:3000/about`, then the string is displayed
 
 ### Respond to GET Requests With HTML Files
@@ -184,9 +239,10 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 ```
+
 - `__dirname` is the current directory
 
-For HTML files with CSS:
+for HTML files with CSS:
 - `app.use(express.static("public"));`
 - create directory called `public`
 - put CSS file in `public`
@@ -205,7 +261,8 @@ app.post('/', function(req, res) {
   res.send('The result of the calculation is ' + result);
 });
 ```
-- `num1` comes from `<input type="text" name="num1" placeholder="First Number">`
+
+- `req.body.num1` comes from `<input type="text" name="num1" placeholder="First Number">`
 
 ### Making GET Requests to External Server
 `const https = require('https');`
@@ -225,6 +282,7 @@ app.get('/', function(req, res) {
   });
 });
 ```
+
 - can only have 1 `res.send()` in an `app.get()`
   - use `res.write()` to send multiple lines
   
@@ -240,11 +298,13 @@ request.end();
 ```
   
 ### Using a Button to Redirect to Different Route
+
 ```
 <form action="/failure" method="post">
   <button class="btn btn-lg btn-warning" type="submit">Try Again</button>
 </form>
 ```
+
 - put a button inside a form
 
 ```
@@ -255,7 +315,7 @@ app.post('/failure', function(req, res) {
 
 ### HTML Templates with EJS
 
-Use for web pages each with similar content
+use for web pages each with similar content
 
 - create `views` directory and template file with `.ejs` extension inside `views`
 
@@ -278,7 +338,7 @@ Use for web pages each with similar content
 
 ### HTML Layouts with EJS
 
-Use for web pages each with different content but with same styling
+use for web pages each with different content but with same styling
 
 ```
 <%- include('header') -%>
@@ -307,6 +367,7 @@ app.get('/posts/:postName', function(req, res) {
   console.log(req.params.postName);
 });
 ```
+
 - anything after the colon is a variable
 - `localhost:3000/posts/post-1`
 
@@ -418,8 +479,9 @@ CREATE TABLE orders (
 
 ## MongoDB
 
-- A `collection` is like a table
-- A `document` is like a row
+a `collection` is like a table
+
+a `document` is like a row
 
 ### Create Database
 `use shopDB`
@@ -448,7 +510,7 @@ CREATE TABLE orders (
 ## Mongoose
 `const mongoose = require('mongoose');`
 
-- a `model` is "like" a collection
+a `model` is "like" a collection
 
 ### Connect to Server
 `mongoose.connect('mongodb://localhost:27017/fruitsDB', {useNewUrlParser: true, useUnifiedTopology: true});`
@@ -558,7 +620,7 @@ const person = new Person({
 `const md5 = require('md5');`
 
 ### Salting
-- salting is appending a random string to a password so that the whole string is used for hashing
+salting is appending a random string to a password so that the whole string is used for hashing
 
 `const bcrypt = require('bcrypt');`
 
@@ -621,7 +683,7 @@ User.register({username: req.body.username}, req.body.password, function(err, us
 ```
 
 #### Checking if User is Authenticated (using `passport`)
-- if a user is logged in, then they should be able to have access without needing to log in again
+if a user is logged in, then they should be able to have access without needing to log in again
 
 ```
 if (req.isAuthenticated()) {
@@ -670,4 +732,105 @@ mongoose.connect('mongodb://localhost:27017/databaseDB', {useNewUrlParser: true,
 app.listen(3000, function() {
   console.log('Server started on port 3000');
 });
+```
+
+## React
+
+```
+import React from 'react'; // same as var React = require('react');
+import ReactDOM from 'react-dom'; // same as var ReactDOM = require('react-dom');
+```
+
+there should be a `div` with an `id` of `root`
+
+### Rendering An HTML Element
+
+`ReactDOM.render(<h1>Heading</h1>, document.getElementById('root'));`
+
+### Rendering Multiple HTML Elements
+put all the elements in a single `div`
+
+```
+ReactDOM.render(
+  <div>
+    <h1>Heading</h1>
+    <p>Paragraph</p>
+  </div>,
+  document.getElementById('root')
+);
+```
+
+### String Interpolation
+put the variable between curly braces
+
+```
+const name = 'ntrllog';
+ReactDOM.render(<p>{name}</p>, document.getElementById('root'));
+```
+
+### Styling Elements
+attribute names are based on the JavaScript version of them
+- so they are also camelCase
+
+`ReactDOM.render(<h1 className="heading">Heading</h1>, document.getElementById('root'));`
+
+#### Inline Styling
+instead of a string, put the style in an object
+- when inserting JavaScript, must wrap curly braces around it
+
+`ReactDOM.render(<h1 style={{color: red}}>Heading</h1>, document.getElementById('root'));`
+
+good for styling elements on the fly
+
+```
+const customStyle = {
+  color: 'red',
+  fontSize: '20px'
+}
+
+`ReactDOM.render(<h1 style={customStyle}>Heading</h1>, document.getElementById('root'));`
+```
+
+### Components
+
+create a .jsx file for the element
+- put all .jsx files in a separate folder
+
+Heading.jsx:
+
+```
+import React from 'react';
+
+function Heading() {
+  return <h1>Heading</h1>;
+}
+
+export default Heading;
+```
+
+create an App.jsx file for the whole app:
+
+```
+import React from 'react';
+import Heading from './components/Heading';
+
+function App() {
+  return (
+    <div>
+      <Heading />
+    </div>
+  );
+}
+  
+export default App;
+```
+
+index.js:
+
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/App';
+
+ReactDOM.render(<App />, document.getElementById('root'));
 ```
