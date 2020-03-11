@@ -812,7 +812,7 @@ create an App.jsx file for the whole app:
 
 ```
 import React from 'react';
-import Heading from './components/Heading';
+import Heading from './Heading';
 
 function App() {
   return (
