@@ -877,6 +877,12 @@ function App() {
   return {contacts.map(createCard)};
 }
 
+ES6:
+
+functionApp() {
+  return {contacts.map(contact => <Card key={contact.id} name={contact.name} />)}
+}
+
 ```
 - when using `map`, each element needs to have a unique key
 - `key` is not accessible using `props.key`
