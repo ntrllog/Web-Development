@@ -839,6 +839,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
 - allows for passing custom information to components
 
 Card.jsx:
+
 ```
 function Card(props) {
   return <h1>{props.name}</h1>;
@@ -850,9 +851,31 @@ index.js:
 `ReactDOM.render(<Card name='ntrllog'/>, document.getElementById('root'));`
 
 multiple properties and JavaScript:
+
 ```
 <Card
   name={contacts.name}
   image={contacts.image}
 />
 ```
+
+### Using `map` to Create Multiple Components
+
+App.jsx:
+
+```
+function createCard(contact) {
+  return (
+    <Card
+      key={contact.id}
+      name={contact.name}
+    />
+  );
+}
+
+function App() {
+  return {contacts.map(createCard)};
+}
+
+```
+- when using `map`, each element needs to have a unique key
