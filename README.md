@@ -879,3 +879,5 @@ function App() {
 
 ```
 - when using `map`, each element needs to have a unique key
+- `key` is not accessible using `props.key`
+  - have to pass in custom prop, like `id` and access using `props.id`
