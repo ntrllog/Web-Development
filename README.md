@@ -834,3 +834,25 @@ import App from './components/App';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
+
+### Props
+- allows for passing custom information to components
+
+Card.jsx:
+```
+function Card(props) {
+  return <h1>{props.name}</h1>;
+}
+```
+- `props` is an object whose properties are the properties specified as an attribute
+
+index.js:
+`ReactDOM.render(<Card name='ntrllog'/>, document.getElementById('root'));`
+
+multiple properties and JavaScript:
+```
+<Card
+  name={contacts.name}
+  image={contacts.image}
+/>
+```
