@@ -848,6 +848,7 @@ function Card(props) {
 - `props` is an object whose properties are the properties specified as an attribute
 
 index.js:
+
 `ReactDOM.render(<Card name='ntrllog'/>, document.getElementById('root'));`
 
 multiple properties and JavaScript:
