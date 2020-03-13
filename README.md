@@ -888,3 +888,26 @@ functionApp() {
 - when using `map`, each element needs to have a unique key
 - `key` is not accessible using `props.key`
   - have to pass in custom prop, like `id` and access using `props.id`
+
+### Conditional Rendering
+
+`currentTime > 12 && <h1>Why are you still working?</h1>`
+- renders the `h1` if the first condition is true and nothing if it is false
+
+#### using `props`
+
+```
+function Form(props) {
+  return (
+    <form className="form">
+      <input type="text" placeholder="Username" />
+      <input type="password" placeholder="Password" />
+      {!props.isRegistered && (
+        <input type="password" placeholder="Confirm Password" />
+      )}
+
+      <button type="submit">{props.isRegistered ? "Login" : "Register"}</button>
+    </form>
+  );
+}
+```
