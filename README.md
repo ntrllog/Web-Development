@@ -105,6 +105,25 @@ import * as pi from './math;
 - `pi` is an object with the exports as properties
 - `*` is discouraged
 
+### Destructuring
+
+#### Arrays
+`const [cat, dog] = [{name: 'cat', sound: 'meow', feedingRequirements: {food: 2, water: 3}}, {name: 'dog', sound: 'woof'}];`
+- the variables can be named anything
+
+#### Objects
+`const {name, sound} = cat;`
+- the variables have to be named the same as the properties
+
+`const {name: catName, sound: catSound} = cat;`
+- but they can be renamed by using `:`
+
+`const {name = 'Fluffy', sound = 'purr'} = cat;`
+- they can be given default values
+
+`const {feedingRequirements: {food, water}} = cat;`
+- destructuring nested objects
+
 ## JavaScript DOM Manipulation
 
 ### Selecting HTML Elements
@@ -911,3 +930,23 @@ function Form(props) {
   );
 }
 ```
+
+### React Hooks
+- a function that changes the state of the app
+
+```
+import React, {useState} from 'react';
+
+function App() {
+  const [count, setCount] = useState(0);
+  
+  function increase() {
+    setCount(count + 1);
+  }
+}
+```
+
+- `useState` takes in one input, which specifies the initial value
+- it returns an array
+  - the first element is the variable that keeps track of the value
+  - the second element is the function that can change the value
