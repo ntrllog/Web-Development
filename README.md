@@ -760,7 +760,21 @@ import React from 'react'; // same as var React = require('react');
 import ReactDOM from 'react-dom'; // same as var ReactDOM = require('react-dom');
 ```
 
-there should be a `div` with an `id` of `root`
+index.html:
+
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>JSX</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="../src/index.js" type="text/JSX"></script>
+  </body>
+</html>
+```
 
 ### Rendering An HTML Element
 
@@ -950,3 +964,74 @@ function App() {
 - it returns an array
   - the first element is the variable that keeps track of the value
   - the second element is the function that can change the value
+  
+### Form Handling
+
+```
+import React, { useState } from "react";
+
+function App() {
+  const [name, setName] = useState("");
+  const [headingText, setHeadingText] = useState("");
+
+  function handleChange(event) {
+    setName(event.target.value);
+  }
+
+  function handleClick() {
+    setHeadingText(name);
+  }
+
+  return (
+    <div className="container">
+      <h1>Hello {headingText}</h1>
+      <input
+        onChange={handleChange}
+        type="text"
+        placeholder="What's your name?"
+        value={name}
+      />
+      <button onClick={handleClick}>Submit</button>
+    </div>
+  );
+}
+```
+
+- `event.target` specifies the element that triggered the event
+
+```
+import React, { useState } from "react";
+
+function App() {
+  const [name, setName] = useState("");
+  const [headingText, setHeading] = useState("");
+
+  function handleChange(event) {
+    setName(event.target.value);
+  }
+
+  function handleClick(event) {
+    setHeading(name);
+    event.preventDefault();
+  }
+
+  return (
+    <div className="container">
+      <h1>Hello {headingText}</h1>
+      <form onSubmit={handleClick}>
+        <input
+          onChange={handleChange}
+          type="text"
+          placeholder="What's your name?"
+          value={name}
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+}
+```
+
+- the button's `onClick` can be moved to the form's `onSubmit`
+- by default, forms refresh the page when it is submitted
+  - `event.preventDefault()` prevents the page from refreshing
