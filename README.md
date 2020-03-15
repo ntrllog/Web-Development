@@ -124,6 +124,31 @@ import * as pi from './math;
 `const {feedingRequirements: {food, water}} = cat;`
 - destructuring nested objects
 
+### Spread Operator
+spreads an array/object into individual items/key-value pairs
+
+```
+const arr1 = ['a', 'b', 'c'];
+const arr2 = ['d', 'e', 'f', ...a];
+```
+
+- `arr2` evaluates to `['d', 'e', 'f', 'a', 'b', 'c']`
+
+```
+const fullName = {
+  fName: 'James',
+  lName: 'Bond'
+};
+
+const user = {
+  ...fullName,
+  id: 1,
+  username: 'jamesbond007'
+};
+```
+
+- `user` now has the properties `fName` and `lName`
+
 ## JavaScript DOM Manipulation
 
 ### Selecting HTML Elements
@@ -1035,3 +1060,55 @@ function App() {
 - the button's `onClick` can be moved to the form's `onSubmit`
 - by default, forms refresh the page when it is submitted
   - `event.preventDefault()` prevents the page from refreshing
+  
+### Get Previous State
+
+```
+const [fullName, setFullName] = useState({
+  fName: '',
+  lName: ''
+})
+```
+
+- to keep track of multiple, related properties, use an object
+
+```
+function handleChange(event) {
+  const {name, value} = event.target;
+
+  setFullName(prevValue => {
+    if (name === 'fName') {
+      return {
+        fName: value,
+        lName: prevValue.lName
+      }
+    }
+    else if (name === 'lName') {
+      return {
+        fName: prevValue.fName,
+        lName: value
+      }
+    }
+  })
+}
+```
+
+- the function that changes the state variable can take in a function
+  - its input is the previous state of the variable
+  
+using spread operator:
+
+```
+function handleChange(event) {
+  const {name, value} = event.target;
+
+  setFullName(prevValue => {
+    return {
+      ...prevValue,
+      [name]: value
+    };
+  }
+}
+```
+
+- to use an existing variable as a key, put it in an array
