@@ -836,7 +836,7 @@ attribute names are based on the JavaScript version of them
 instead of a string, put the style in an object
 - when inserting JavaScript, must wrap curly braces around it
 
-`ReactDOM.render(<h1 style={{color: red}}>Heading</h1>, document.getElementById('root'));`
+`ReactDOM.render(<h1 style={{color: 'red'}}>Heading</h1>, document.getElementById('root'));`
 
 good for styling elements on the fly
 
@@ -903,7 +903,8 @@ function Card(props) {
   return <h1>{props.name}</h1>;
 }
 ```
-- `props` is an object whose properties are the properties specified as an attribute
+- `props` is an object whose properties are the attributes of the component
+- `props` is a read-only object
 
 index.js:
 
@@ -1112,3 +1113,35 @@ function handleChange(event) {
 ```
 
 - to use an existing variable as a key, put it in an array
+
+### Interacting With Parent Component
+suppose we have an array in App.jsx and we want to delete a specific element  
+to know which element to delete, the function has to be called in the child component  
+create the function in App.jsx and pass it as an attribute
+
+App.jsx:
+
+```
+function deleteItem(id) {
+}
+
+<ToDoItem onChecked={deleteItem} />
+```
+
+ToDoItem.jsx:
+
+```
+function ToDoItem(props) {
+  return (
+    <div
+      onClick={() => {
+        props.onChecked(props.id);
+      }}
+    >
+      <li>text</li>
+    </div>
+  );
+}
+```
+
+- if the function takes in arguments, then create an anonymous function
